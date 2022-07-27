@@ -1,4 +1,3 @@
-import { ctx } from '@yank-note/runtime-api'
 import {
   getCurrentLineContent,
   getCurrentLineNumber, getLineContent, getSection, getSelectionInfo,
