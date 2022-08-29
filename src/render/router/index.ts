@@ -7,13 +7,18 @@ import demo_popup from '@/components/demo/popup.vue'
 import demo_popup2 from '@/components/demo/popup2.vue'
 import demo_show from '@/components/demo/show.vue'
 import demo_condition from '@/components/demo/condition.vue'
+import demo_echart from '@/components/demo/echart.vue'
 import single_heading from '@/components/eidt/Heading.vue'
 
+import ghost_demo_htape from '@/ghost/demo/htape.vue'
+import ghost_t_function from '@/ghost/demo/t_function.vue'
+import ghost_layout1 from '@/ghost/demo/layout1.vue'
+import ghost_htape1 from '@/ghost/demo/htape1.vue'
 const routes = [
   {
     path: '/',
     name: 'index',
-    component: edit_index
+    component: demo_echart
   }, {
     path: '/edit/index',
     name: 'edit_index',
@@ -46,7 +51,27 @@ const routes = [
     path: '/demo/condition',
     name: 'demo_condition',
     component: demo_condition
-  }, {
+  },  {
+    path: '/demo/echart',
+    name: 'demo_echart',
+    component: demo_echart
+  },  {
+    path: '/ghost/demo/htape',
+    name: 'ghost_demo_htape',
+    component: ghost_demo_htape
+  },  {
+    path: '/ghost/demo/t_function',
+    name: 'ghost_t_function',
+    component: ghost_t_function
+  },  {
+    path: '/ghost/demo/ghost_layout1',
+    name: 'ghost_layout1',
+    component: ghost_layout1
+  },  {
+    path: '/ghost/demo/ghost_htape1',
+    name: 'ghost_htape1',
+    component: ghost_htape1
+  },{
     path: '/single/heading',
     name: 'single_heading',
     component: single_heading

@@ -4,7 +4,7 @@ import {
   getSelectText, insertAt, isSelectText,
   replaceLine,
   replaceSelect,
-  global_resize, insert
+  global_resize, insert, refreshMenu
 } from '@/utils/ghost_base_utils'
 import { isEmpty, isNoEmpty, startWith, testStr } from '@/utils/StringUtils'
 import store from '@/render/store'
@@ -156,8 +156,19 @@ export function strikethroughSelect () {
  * @param prefix
  */
 export function heading (prefix: string) {
-  var content = getCurrentLineContent()
-  var lineNumber = getCurrentLineNumber()
+  var section = getSection()
+  var i = section?.startLineNumber || 0
+  var end = section?.endLineNumber || 0
+  for (; i <= end; i++) {
+    lineHeading(i, prefix)
+  }
+  // var content = getCurrentLineContent()
+  // var lineNumber = getCurrentLineNumber()
+  // replaceLine(lineNumber, headingText(prefix, content))
+}
+
+export function lineHeading (lineNumber, prefix: string) {
+  var content = getLineContent(lineNumber)
   replaceLine(lineNumber, headingText(prefix, content))
 }
 
@@ -312,7 +323,20 @@ export function link () {
 export const DEFAULT_LINk = 'https://url/'
 
 export function buildLinkText (content: string) {
+  if (validURL(content) || (content && content.startsWith('./'))) {
+    return '[' + content + ']' + '(' + content + ')'
+  }
   return '[' + content + ']' + '(' + DEFAULT_LINk + ')'
+}
+
+export function validURL (str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+    '(\\#[-a-z\\d_]*)?$', 'i') // fragment locator
+  return !!pattern.test(str)
 }
 
 /**
@@ -373,6 +397,7 @@ export function buildFormulaText (content: string) {
  */
 export function toggleToolbar (visible?: boolean) {
   store.commit('setShowToolbar', typeof visible === 'boolean' ? visible : !store.state.showToolbar)
+  refreshMenu()
   global_resize()
 }
 
@@ -389,7 +414,7 @@ export function insertTable () {
 }
 
 export function backgroundColor (color: string) {
-  replaceSelect(buildBackgroundColorText(getSelectText(),color))
+  replaceSelect(buildBackgroundColorText(getSelectText(), color))
 }
 
 export const TD_BACKGROUND_COLOR_TEST = /^\s*<td bgcolor=[^>]*>[\s\S]*<\/td>\s*$/
@@ -422,7 +447,7 @@ export function buildBackgroundColorText (content: string, colorStr: string) {
   // return '<td bgcolor="' + colorStr + '">' + rc + '</td>'
   var dom = htmlStrToSpanDom(content)
   // @ts-ignore
-  dom.style.background=colorStr
+  dom.style.background = colorStr
   // @ts-ignore
   return dom?.outerHTML
 }
@@ -433,7 +458,7 @@ export function buildBackgroundColorText (content: string, colorStr: string) {
  */
 export function fontSetting (setting) {
   // console.log(setting)
-  replaceSelect(buildFontSettingText(getSelectText(),setting))
+  replaceSelect(buildFontSettingText(getSelectText(), setting))
 }
 
 export function buildFontSettingText (content: string, setting) {

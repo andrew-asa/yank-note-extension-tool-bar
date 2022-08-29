@@ -228,6 +228,10 @@ export function resolve (dir, name) {
   return ctx.utils.path.resolve(dir, name)
 }
 
+export function refreshMenu () {
+  ctx.statusBar.refreshMenu()
+}
+
 /**
  * 是否是本地文档的图片
  * @param link
