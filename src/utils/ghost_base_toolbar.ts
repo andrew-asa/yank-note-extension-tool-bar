@@ -13,7 +13,7 @@ import { htmlStrToSpanDom } from '@/utils/base_dom'
 /**
  * 加粗
  */
-export function bold () {
+export function bold() {
   if (isSelectText()) {
     boldSelect()
   } else {
@@ -21,14 +21,14 @@ export function bold () {
   }
 }
 
-export function boldText (text: string) {
+export function boldText(text: string) {
   return '**' + text + '**'
 }
 
 /**
  * 当前行加粗
  */
-export function boldCurrentLine () {
+export function boldCurrentLine() {
   var content = getCurrentLineContent()
   var lineNumber = getCurrentLineNumber()
   replaceLine(lineNumber, boldText(content))
@@ -37,7 +37,7 @@ export function boldCurrentLine () {
 /**
  * 当前选中文本加粗
  */
-export function boldSelect () {
+export function boldSelect() {
   replaceSelect(boldText(getSelectText()))
 }
 
@@ -47,7 +47,7 @@ export function boldSelect () {
 /**
  * 斜体
  */
-export function italic () {
+export function italic() {
   if (isSelectText()) {
     italicSelect()
   } else {
@@ -55,14 +55,14 @@ export function italic () {
   }
 }
 
-export function italicText (text: string) {
+export function italicText(text: string) {
   return '*' + text + '*'
 }
 
 /**
  * 当前行斜体
  */
-export function italicCurrentLine () {
+export function italicCurrentLine() {
   var content = getCurrentLineContent()
   var lineNumber = getCurrentLineNumber()
   replaceLine(lineNumber, italicText(content))
@@ -71,7 +71,7 @@ export function italicCurrentLine () {
 /**
  * 当前选中文本斜体
  */
-export function italicSelect () {
+export function italicSelect() {
   replaceSelect(italicText(getSelectText()))
 }
 
@@ -81,7 +81,7 @@ export function italicSelect () {
 /**
  * 下划线
  */
-export function underline () {
+export function underline() {
   if (isSelectText()) {
     underlineSelect()
   } else {
@@ -93,14 +93,14 @@ export function underline () {
  * 文本下划线
  * @param text
  */
-export function underlineText (text: string) {
+export function underlineText(text: string) {
   return '<u>' + text + '</u>'
 }
 
 /**
  * 当前行下划线
  */
-export function underlineCurrentLine () {
+export function underlineCurrentLine() {
   var content = getCurrentLineContent()
   var lineNumber = getCurrentLineNumber()
   replaceLine(lineNumber, underlineText(content))
@@ -109,7 +109,7 @@ export function underlineCurrentLine () {
 /**
  * 当前选中文本下划线
  */
-export function underlineSelect () {
+export function underlineSelect() {
   replaceSelect(underlineText(getSelectText()))
 }
 
@@ -119,7 +119,7 @@ export function underlineSelect () {
 /**
  * 删除线
  */
-export function strikethrough () {
+export function strikethrough() {
   if (isSelectText()) {
     strikethroughSelect()
   } else {
@@ -131,14 +131,14 @@ export function strikethrough () {
  * 文本删除线
  * @param text
  */
-export function strikethroughText (text: string) {
+export function strikethroughText(text: string) {
   return '~~' + text + '~~'
 }
 
 /**
  * 当前行删除线
  */
-export function strikethroughCurrentLine () {
+export function strikethroughCurrentLine() {
   var content = getCurrentLineContent()
   var lineNumber = getCurrentLineNumber()
   replaceLine(lineNumber, strikethroughText(content))
@@ -147,7 +147,7 @@ export function strikethroughCurrentLine () {
 /**
  * 当前选中删除线
  */
-export function strikethroughSelect () {
+export function strikethroughSelect() {
   replaceSelect(strikethroughText(getSelectText()))
 }
 
@@ -155,7 +155,7 @@ export function strikethroughSelect () {
  * 当前行标题
  * @param prefix
  */
-export function heading (prefix: string) {
+export function heading(prefix: string) {
   var section = getSection()
   var i = section?.startLineNumber || 0
   var end = section?.endLineNumber || 0
@@ -167,7 +167,7 @@ export function heading (prefix: string) {
   // replaceLine(lineNumber, headingText(prefix, content))
 }
 
-export function lineHeading (lineNumber, prefix: string) {
+export function lineHeading(lineNumber, prefix: string) {
   var content = getLineContent(lineNumber)
   replaceLine(lineNumber, headingText(prefix, content))
 }
@@ -177,7 +177,7 @@ export function lineHeading (lineNumber, prefix: string) {
  * @param prefix
  * @param text
  */
-export function headingText (prefix: string, text: string) {
+export function headingText(prefix: string, text: string) {
   text = text || ''
   if (prefix != '') {
     prefix = prefix + ' '
@@ -189,7 +189,7 @@ export function headingText (prefix: string, text: string) {
 /**
  * 水平线
  */
-export function horizontal () {
+export function horizontal() {
   var content = getCurrentLineContent()
   var lineNumber = getCurrentLineNumber()
   replaceLine(lineNumber, content + '\n' + '---')
@@ -198,7 +198,7 @@ export function horizontal () {
 /**
  * 引用
  */
-export function quote () {
+export function quote() {
   selectLineOp(quoteLine)
 }
 
@@ -206,7 +206,7 @@ export function quote () {
  * 单行引用
  * @param lineNumber
  */
-export function quoteLine (lineNumber: number) {
+export function quoteLine(lineNumber: number) {
   var content = getLineContent(lineNumber)
   replaceLine(lineNumber, '> ' + content)
 }
@@ -214,7 +214,7 @@ export function quoteLine (lineNumber: number) {
 /**
  * 无序列表
  */
-export function ul () {
+export function ul() {
   selectLineOp(replaceUlLine)
 }
 
@@ -222,7 +222,7 @@ export function ul () {
  * 替换无序列表一行
  * @param lineNumber
  */
-export function replaceUlLine (lineNumber: number) {
+export function replaceUlLine(lineNumber: number) {
   var content = getLineContent(lineNumber)
   replaceLine(lineNumber, '- ' + content)
 }
@@ -230,7 +230,7 @@ export function replaceUlLine (lineNumber: number) {
 /**
  * 有序列表
  */
-export function ol () {
+export function ol() {
   selectLineOp(replaceOlLine)
 }
 
@@ -238,7 +238,7 @@ export function ol () {
  * 替换有序列表一行
  * @param lineNumber
  */
-export function replaceOlLine (lineNumber: number) {
+export function replaceOlLine(lineNumber: number) {
   var content = getLineContent(lineNumber)
   replaceLine(lineNumber, '1. ' + content)
 }
@@ -246,7 +246,7 @@ export function replaceOlLine (lineNumber: number) {
 /**
  * 任务标记完成
  */
-export function listCheck () {
+export function listCheck() {
   selectLineOp(listCheckLine)
 }
 
@@ -257,12 +257,12 @@ export const uncheckPrefix = '- [ ] '
  * 已经完成任务
  * @param lineNumber
  */
-export function listCheckLine (lineNumber: number) {
+export function listCheckLine(lineNumber: number) {
   let content: string = getLineContent(lineNumber)
   replaceLine(lineNumber, createCheckContent(content))
 }
 
-export function createCheckContent (content: string): string {
+export function createCheckContent(content: string): string {
   if (startWith(content, uncheckPrefix)) {
     content = content.replace(uncheckPrefix, checkPrefix)
   } else {
@@ -274,7 +274,7 @@ export function createCheckContent (content: string): string {
 /**
  * 任务没有完成
  */
-export function listUnCheck () {
+export function listUnCheck() {
   selectLineOp(listUnCheckLine)
 }
 
@@ -282,12 +282,12 @@ export function listUnCheck () {
  * 任务没有完成
  * @param lineNumber
  */
-export function listUnCheckLine (lineNumber: number) {
+export function listUnCheckLine(lineNumber: number) {
   let content: string = getLineContent(lineNumber)
   replaceLine(lineNumber, createUnCheckContent(content))
 }
 
-export function createUnCheckContent (content: string): string {
+export function createUnCheckContent(content: string): string {
   if (startWith(content, checkPrefix)) {
     content = content.replace(checkPrefix, uncheckPrefix)
   } else {
@@ -300,7 +300,7 @@ export function createUnCheckContent (content: string): string {
  * 选中逐行进行操作
  * @param op
  */
-export function selectLineOp (op: Function) {
+export function selectLineOp(op: Function) {
   var selectionInfo = getSection()
   let startLine = selectionInfo?.startLineNumber
   let endLine = selectionInfo?.endLineNumber
@@ -315,21 +315,21 @@ export function selectLineOp (op: Function) {
 /**
  * 插入链接
  */
-export function link () {
+export function link() {
   var text: string = getSelectText()
   replaceSelect(buildLinkText(text))
 }
 
 export const DEFAULT_LINk = 'https://url/'
 
-export function buildLinkText (content: string) {
+export function buildLinkText(content: string) {
   if (validURL(content) || (content && content.startsWith('./'))) {
     return '[' + content + ']' + '(' + content + ')'
   }
   return '[' + content + ']' + '(' + DEFAULT_LINk + ')'
 }
 
-export function validURL (str) {
+export function validURL(str) {
   var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
@@ -342,40 +342,40 @@ export function validURL (str) {
 /**
  * 插入图片链接
  */
-export function linkImg () {
+export function linkImg() {
   replaceSelect(buildLinkImgText(getSelectText()))
 }
 
-export function buildLinkImgText (content: string) {
+export function buildLinkImgText(content: string) {
   return '![' + content + ']' + '(' + DEFAULT_LINk + ')'
 }
 
 /**
  * 内嵌代码
  */
-export function embedCode () {
+export function embedCode() {
   replaceSelect(buildEmbedCodeText(getSelectText()))
 }
 
-export function buildEmbedCodeText (content: string) {
+export function buildEmbedCodeText(content: string) {
   return '`' + content + '`'
 }
 
 /**
  * 插入代码块
  */
-export function code () {
+export function code() {
   replaceSelect(buildCodeText(getSelectText()))
 }
 
-export function buildCodeText (content: string) {
+export function buildCodeText(content: string) {
   return '\n```\n' + content + '\n```\n'
 }
 
 /**
  * 插入公式
  */
-export function formula () {
+export function formula() {
   replaceSelect(buildFormulaText(getSelectText()))
 }
 
@@ -384,7 +384,7 @@ export function formula () {
  */
 export const DEFAULT_FORMULA = 'E = mc^2'
 
-export function buildFormulaText (content: string) {
+export function buildFormulaText(content: string) {
   if (isEmpty(content)) {
     content = DEFAULT_FORMULA
   }
@@ -395,7 +395,7 @@ export function buildFormulaText (content: string) {
  * 工具类的显示以及隐藏
  * @param visible
  */
-export function toggleToolbar (visible?: boolean) {
+export function toggleToolbar(visible?: boolean) {
   store.commit('setShowToolbar', typeof visible === 'boolean' ? visible : !store.state.showToolbar)
   refreshMenu()
   global_resize()
@@ -409,18 +409,27 @@ export const DEFAULT_TABLE_DEMO =
 /**
  * 插入表格
  */
-export function insertTable () {
-  insert(DEFAULT_TABLE_DEMO)
+// export function insertTable() {
+//   insert(DEFAULT_TABLE_DEMO)
+// }
+
+export function insertTable(row=1, col=3) {
+  var t = '| title '.repeat(col) + '|\n'
+  var s = '| :-- '.repeat(col) + '|\n'
+  var l = '|  '.repeat(col) + '|\n'
+  var c = l.repeat(row)
+  var r = t + s + c
+  insert(r)
 }
 
-export function backgroundColor (color: string) {
+export function backgroundColor(color: string) {
   replaceSelect(buildBackgroundColorText(getSelectText(), color))
 }
 
 export const TD_BACKGROUND_COLOR_TEST = /^\s*<td bgcolor=[^>]*>[\s\S]*<\/td>\s*$/
 export const TD_REG = /<td[^>]*>([\s\S]*?)<\/td>/
 
-export function parseTdContent (content: string) {
+export function parseTdContent(content: string) {
   if (isNoEmpty(content)) {
     var items = content.match(TD_REG)
     if (items && items.length > 1) {
@@ -434,11 +443,11 @@ export function parseTdContent (content: string) {
  * 是否是内置的背景颜色文本
  * @param content
  */
-export function isInnerBackgroundColorText (content: string) {
+export function isInnerBackgroundColorText(content: string) {
   return testStr(content, TD_BACKGROUND_COLOR_TEST)
 }
 
-export function buildBackgroundColorText (content: string, colorStr: string) {
+export function buildBackgroundColorText(content: string, colorStr: string) {
   // 原先就有背景色
   // var rc = content
   // if (isInnerBackgroundColorText(content)) {
@@ -456,12 +465,12 @@ export function buildBackgroundColorText (content: string, colorStr: string) {
  * 字体设置
  * @param setting {color:"red"}
  */
-export function fontSetting (setting) {
+export function fontSetting(setting) {
   // console.log(setting)
   replaceSelect(buildFontSettingText(getSelectText(), setting))
 }
 
-export function buildFontSettingText (content: string, setting) {
+export function buildFontSettingText(content: string, setting) {
   var dom = htmlStrToSpanDom(content)
   if (setting) {
     for (var k in setting) {

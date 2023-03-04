@@ -38,12 +38,14 @@ import { useStore } from 'vuex'
 import Heading from '@/components/eidt/Heading.vue'
 import BackgroundPick from '@/components/eidt/BackgroundPick.vue'
 import FontPick from '@/components/eidt/FontPick.vue'
+import TablePick from '@/components/eidt/TablePick.vue'
 import { AppState } from '@/render/store'
 export default {
   components: {
     "Heading": Heading,
     "BackgroundPick": BackgroundPick,
     "FontPick": FontPick,
+    "TablePick":TablePick
   },
   methods:{
     hidePopupByHand: function () {

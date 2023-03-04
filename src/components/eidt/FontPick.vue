@@ -24,7 +24,7 @@
         </el-tag>
       </div>
       <div class="demo-show">
-        <span class="show-panel" :style="{ 'color': selectColor , 'font-size' : selectSize}" @dblclick="applySelect">双击应用</span>
+        <span class="show-panel" :style="{ 'color': selectColor , 'font-size' : selectSize}" @dblclick="applySelect">双击此处应用</span>
       </div>
     </div>
   </div>

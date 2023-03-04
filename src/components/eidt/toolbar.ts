@@ -16,17 +16,17 @@ import {
   underlineText
 } from '@/utils/ghost_base_toolbar'
 let operation = {
-  bold:bold,
-  italic:italic,
-  underline:underline,
-  strikethrough:strikethrough
+  bold: bold,
+  italic: italic,
+  underline: underline,
+  strikethrough: strikethrough
 }
 
-function setOperation (op) {
+function setOperation(op) {
   operation = op
 }
 
-function seOperationFunction (name, fn) {
+function seOperationFunction(name, fn) {
   operation[name] = fn
 }
 
@@ -77,7 +77,7 @@ export const toolbar = [{
   tooltipMsg: '引用',
   icon: faAngleRight,
   fn: quote,
-},{
+}, {
   name: 'faListUl',
   tooltipMsg: '无序列表',
   icon: faListUl,
@@ -116,12 +116,16 @@ export const toolbar = [{
   name: 'faFileCode',
   tooltipMsg: '代码块',
   icon: faFileCode,
-  fn:code,
+  fn: code,
 }, {
   name: 'faTable',
   tooltipMsg: '表格',
   icon: faTable,
-  fn: insertTable,
+  popupUp: true,
+  popupPane: "TablePick",
+  fn: () => {
+  }
+  // fn: insertTable,
 }, {
   name: 'faPercent',
   tooltipMsg: '公式',
