@@ -23,7 +23,7 @@
         <font-awesome-icon class="svg-icon" :icon=faBook></font-awesome-icon>
       </el-button>
     </el-tooltip>
-    <el-drawer :with-header="false" v-model="faTemplateModel" size="50%">
+    <el-drawer :with-header="false" v-model="faTemplateModel" size="65%">
       <Moretemplate @save="saveTemplate" @apply="applyTemplate"></Moretemplate>
     </el-drawer>
   </div>

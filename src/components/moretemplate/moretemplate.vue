@@ -1,7 +1,8 @@
 <template>
+  <el-row style="height:30px"></el-row>
   <el-row>
-    <el-col :span="4">
-      <left :templates="templates" @add=addTemplate @edit=editCard @delete=deleteCard></left>
+    <el-col :span="5">
+      <left ref="left" :templates="templates" @add=addTemplate @edit=editCard @delete=deleteCard></left>
     </el-col>
     <el-col :span="16" :offset="1">
       <right :activeCard="activeCard" @save="saveCard" @apply="applyCard"></right>
@@ -9,6 +10,7 @@
   </el-row>
 </template>
 <script lang="ts">
+import { onMounted, reactive, ref } from 'vue'
 import Left from './left.vue'
 import { addTemplate, deleteTemplate, getTemplates, updateTemplate } from './moretemplate'
 import Right from './right.vue'
@@ -16,11 +18,7 @@ import Right from './right.vue'
 
 export default {
   props: {
-    // 模板信息
-    templates: {
-      type: Array,
-      default: []
-    }
+
   },
   data() {
     return {
@@ -30,8 +28,20 @@ export default {
   components: {
     Left, Right
   },
-  stetup() {
-
+  setup(props, context) {
+    var self = this
+    const templates = reactive([])
+    return {
+      templates
+    }
+  },
+  mounted() {
+    var self = this
+    getTemplates((ts) => {
+      self.$refs.left.setTemplates(ts)
+    }, () => {
+      console.log("获取模板失败")
+    })
   },
   methods: {
     addTemplate(t) {
@@ -51,22 +61,8 @@ export default {
     },
     applyCard(t) {
       this.$emit('apply', this.activeCard)
-    },
-    setTemplates(ts) {
-      this.templates.splice(0, this.showTemplates.length)
-      for (let t in ts) {
-        this.templates.push(ts[t])
-      }
     }
   },
-  created: function () {
-    var self = this
-    getTemplates((ts) => {
-      self.setTemplates(ts)
-    }, () => {
-      console.log("获取模板失败")
-    })
-  }
 }
 
 </script>

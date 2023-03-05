@@ -60,17 +60,23 @@ function getCurrentRepo() {
     return ctx.store._state.data.currentRepo.name
 }
 export function getTemplates(success, fail) {
-    getContent(getCurrentRepo(), template_settings_path)
-        .then(content => {
-            var t = []
-            try {
-                t = JSON.parse(content)
-            } catch (err) {
+    try {
+        getContent(getCurrentRepo(), template_settings_path)
+            .then(content => {
+                var t = []
+                try {
+                    t = JSON.parse(content)
+                } catch (err) {
 
-            }
-            success(t)
-        })
-        .catch(reason => fail(reason))
+                }
+                success(t)
+            })
+            .catch(reason => fail(reason))
+    } catch (e) {
+        console.log("获取模板出问题")
+        console.log(e)
+    }
+
 }
 export function createTemplateSettings() {
 

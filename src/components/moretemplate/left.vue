@@ -148,7 +148,7 @@ export default {
         var ds = t.descript
         return ds && ds.indexOf(s) != -1
       })
-      this.reRender(st)
+      this.setTemplates(st)
     },
     searchTemplate() {
       this.doSearchTemplate(this.searchInput)
@@ -170,7 +170,7 @@ export default {
         self.doActiveTemplete(self.showTemplates[0])
       }
     },
-    reRender(ts) {
+    setTemplates(ts) {
       this.showTemplates.splice(0, this.showTemplates.length)
       for (let t in ts) {
         this.showTemplates.push(ts[t])
