@@ -3,7 +3,8 @@ import {
   , faListUl, faListOl, faListCheck,
   faList, faListSquares, faUndo, faUndoAlt,
   faLink, faImage, faCode, faFileCode, faTable,
-  faPercent, faFill, faAngleDown, faAngleRight
+  faPercent, faFill, faAngleDown, faAngleRight,
+  faBook
 } from '@fortawesome/free-solid-svg-icons'
 import {
   bold, code, embedCode, formula,
@@ -15,6 +16,7 @@ import {
   underline,
   underlineText
 } from '@/utils/ghost_base_toolbar'
+import { ref } from 'vue'
 let operation = {
   bold: bold,
   italic: italic,
@@ -29,7 +31,6 @@ function setOperation(op) {
 function seOperationFunction(name, fn) {
   operation[name] = fn
 }
-
 export const toolbar = [{
   name: 'faBold',
   tooltipMsg: '加粗',
@@ -138,6 +139,7 @@ export const toolbar = [{
   popupUp: true,
   popupPane: "BackgroundPick",
   fn: () => {
-  },
-}]
+  }
+}
+]
 

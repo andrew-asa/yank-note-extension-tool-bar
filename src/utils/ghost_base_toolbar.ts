@@ -9,6 +9,8 @@ import {
 import { isEmpty, isNoEmpty, startWith, testStr } from '@/utils/StringUtils'
 import store from '@/render/store'
 import { htmlStrToSpanDom } from '@/utils/base_dom'
+import { compile } from '@/utils/template'
+
 
 /**
  * 加粗
@@ -413,13 +415,21 @@ export const DEFAULT_TABLE_DEMO =
 //   insert(DEFAULT_TABLE_DEMO)
 // }
 
-export function insertTable(row=1, col=3) {
+export function insertTable(row = 1, col = 3) {
   var t = '| title '.repeat(col) + '|\n'
   var s = '| :-- '.repeat(col) + '|\n'
   var l = '|  '.repeat(col) + '|\n'
   var c = l.repeat(row)
   var r = t + s + c
   insert(r)
+}
+
+/**
+ * 插入模板
+ * @param t
+ */
+export function insertTemplate(t) {
+  insert(compile(t))
 }
 
 export function backgroundColor(color: string) {

@@ -3,7 +3,7 @@
  * @param str
  */
 
-export function isEmpty (str: string | undefined | null) {
+export function isEmpty(str: string | undefined | null) {
   return str == null || str == undefined || str.length == 0
 }
 
@@ -11,7 +11,7 @@ export function isEmpty (str: string | undefined | null) {
  * 字符串非空
  * @param str
  */
-export function isNoEmpty (str: string) {
+export function isNoEmpty(str: string) {
   return !isEmpty(str)
 }
 
@@ -20,7 +20,7 @@ export function isNoEmpty (str: string) {
  * @param str
  * @param start
  */
-export function startWith (str: string, start: string) {
+export function startWith(str: string, start: string) {
   if (str == null && start == null) {
     return true
   }
@@ -50,7 +50,7 @@ export const NO_NEGATIVE_INT_REG = /^[0-9]+$/
  * @param str
  * @param regStr
  */
-export function testStr (str: string, regStr: string | RegExp) {
+export function testStr(str: string, regStr: string | RegExp) {
   let reg: RegExp
   if (regStr instanceof RegExp) {
     reg = regStr
@@ -63,6 +63,24 @@ export function testStr (str: string, regStr: string | RegExp) {
   return false
 }
 
-export function isNoNegativeInteger (s:string) {
+export function isNoNegativeInteger(s: string) {
   return testStr(s, NO_NEGATIVE_INT_REG)
+}
+/**
+ * 随机字符串
+ * @param len
+ */
+export function randomString(len: number) {
+  len = len || 32
+  var t = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
+    a = t.length,
+    n = ''
+  for (var i = 0; i < len; i++) n += t.charAt(Math.floor(Math.random() * a))
+  return n
+}
+
+export function containIngoreCase(str1, str2) {
+  var s1 = (str1 || "").toLowerCase()
+  var s2 = (str2 || "").toLowerCase()
+  return s1.indexOf(s2) != -1
 }

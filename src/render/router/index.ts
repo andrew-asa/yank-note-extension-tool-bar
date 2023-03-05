@@ -17,78 +17,106 @@ import ghost_layout1 from '@/ghost/demo/layout1.vue'
 import ghost_htape1 from '@/ghost/demo/htape1.vue'
 import demo_home from '@/components/demo/Home.vue'
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: demo_home,
-    describe: '首页'
-  }, {
-    path: '/edit/index',
-    name: 'edit_index',
-    component: edit_index,
-    describe: '工具栏'
-  }, {
-    path: '/edit/edit_color_pick',
-    name: 'edit_color_pick',
-    component: edit_color_pick,
-    describe: '颜色选择器'
-  }, {
-    path: '/edit/edit_background_color_pick',
-    name: 'edit_background_color_pick',
-    component: edit_background_color_pick
-  }, {
-    path: '/edit/edit_font_pick',
-    name: 'edit_font_pick',
-    describe: '字体选择',
-    component: edit_font_pick
-  }, {
-    path: '/edit/edit_table_pick',
-    name: 'edit_table_pick',
-    describe: '表格选择',
-    component: edit_table_pick
-  }, {
-    path: '/demo/popup',
-    name: 'demo_popup',
-    component: demo_popup
-  }, {
-    path: '/demo/popup2',
-    name: 'demo_popup2',
-    component: demo_popup2
-  }, {
-    path: '/demo/show',
-    name: 'demo_show',
-    component: demo_show
-  }, {
-    path: '/demo/condition',
-    name: 'demo_condition',
-    component: demo_condition
-  }, {
-    path: '/demo/echart',
-    name: 'demo_echart',
-    component: demo_echart
-  }, {
-    path: '/ghost/demo/htape',
-    name: 'ghost_demo_htape',
-    component: ghost_demo_htape
-  }, {
-    path: '/ghost/demo/t_function',
-    name: 'ghost_t_function',
-    component: ghost_t_function
-  }, {
-    path: '/ghost/demo/ghost_layout1',
-    name: 'ghost_layout1',
-    component: ghost_layout1
-  }, {
-    path: '/ghost/demo/ghost_htape1',
-    name: 'ghost_htape1',
-    component: ghost_htape1
-  }, {
-    path: '/single/heading',
-    name: 'single_heading',
-    component: single_heading
-  }
-]
+// const routes = [
+//   {
+//     path: '/',
+//     name: 'Home',
+//     component: demo_home,
+//     describe: '首页'
+//   }, {
+//     path: '/edit/index',
+//     name: 'edit_index',
+//     component: edit_index,
+//     describe: '工具栏'
+//   }, {
+//     path: '/edit/edit_color_pick',
+//     name: 'edit_color_pick',
+//     component: edit_color_pick,
+//     describe: '颜色选择器'
+//   }, {
+//     path: '/edit/edit_background_color_pick',
+//     name: 'edit_background_color_pick',
+//     component: edit_background_color_pick
+//   }, {
+//     path: '/edit/edit_font_pick',
+//     name: 'edit_font_pick',
+//     describe: '字体选择',
+//     component: edit_font_pick
+//   }, {
+//     path: '/edit/edit_table_pick',
+//     name: 'edit_table_pick',
+//     describe: '表格选择',
+//     component: edit_table_pick
+//   }, {
+//     path: '/demo/popup',
+//     name: 'demo_popup',
+//     component: demo_popup
+//   }, {
+//     path: '/demo/popup2',
+//     name: 'demo_popup2',
+//     component: demo_popup2
+//   }, {
+//     path: '/demo/show',
+//     name: 'demo_show',
+//     component: demo_show
+//   }, {
+//     path: '/demo/condition',
+//     name: 'demo_condition',
+//     component: demo_condition
+//   }, {
+//     path: '/demo/echart',
+//     name: 'demo_echart',
+//     component: demo_echart
+//   }, {
+//     path: '/ghost/demo/htape',
+//     name: 'ghost_demo_htape',
+//     component: ghost_demo_htape
+//   }, {
+//     path: '/ghost/demo/t_function',
+//     name: 'ghost_t_function',
+//     component: ghost_t_function
+//   }, {
+//     path: '/ghost/demo/ghost_layout1',
+//     name: 'ghost_layout1',
+//     component: ghost_layout1
+//   }, {
+//     path: '/ghost/demo/ghost_htape1',
+//     name: 'ghost_htape1',
+//     component: ghost_htape1
+//   }, {
+//     path: '/single/heading',
+//     name: 'single_heading',
+//     component: single_heading
+//   }
+// ]
+// routes.splice(0, routes.length)
+const routes = []
+
+function importDemo(demoModules) {
+  Object.entries(demoModules).map(([i, item]) => {
+    let path = i.replace("../../components", "").replace(".vue", "").split('/').filter(Boolean).join("_")
+    let name = path
+    path = "/" + path
+    if ("/demo_Home" == path) {
+      path = "/"
+    }
+    var ri = {
+      path: path,
+      name: name,
+      component: item
+    }
+    //@ts-ignoreghost_
+    routes.push(ri)
+  })
+}
+const demoModules = import.meta.glob("@/components/demo/**/**.vue")
+// const moreTM = import.meta.glob("@/components/moretemplate/**/**.vue")
+importDemo(demoModules)
+// importDemo(moreTM)
+// console.log(demoModules)
+
+
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes
