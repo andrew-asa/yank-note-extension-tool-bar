@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col> <el-input v-model="searchInput" placeholder="搜索模板" :prefix-icon=Search @keyup.enter.native="searchTemplate"
+    <el-col> <el-input v-model="searchInput" placeholder="搜索模板文件" :prefix-icon=Search @keyup.enter.native="searchTemplate"
         clearable="true" @clear="$event => doSearchTemplate('')" /></el-col>
   </el-row>
   <div>

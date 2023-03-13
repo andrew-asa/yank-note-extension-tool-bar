@@ -10,6 +10,17 @@ export default defineConfig({
     __EXTENSION_VERSION__: JSON.stringify(process.env.npm_package_version),
     __EXTENSION_ID__: JSON.stringify(process.env.npm_package_name),
   },
+  server: {
+    port:5555,
+    proxy: {
+      //代理所有 /api 的请求
+      "/api": {
+        // 代理请求之后的请求地址
+        target: "http://localhost:3044",
+        // 跨域配置
+      }
+    }
+  },
   resolve: {
     alias: [
       { find: /^@\//, replacement: path.resolve(__dirname, 'src') + '/' },

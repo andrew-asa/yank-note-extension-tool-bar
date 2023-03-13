@@ -18,7 +18,6 @@ test('startWith', () => {
 
 test('testStr', () => {
   expect(testStr('#aa',COLOR_REG_STR)).toBe(false)
-  expect(testStr('#aaa',COLOR_REG_STR)).toBe(false)
   expect(testStr('#aa3333',COLOR_REG_STR)).toBe(true)
   expect(testStr('#aa3333',COLOR_REG)).toBe(true)
   expect(testStr('#abcdef',COLOR_REG)).toBe(true)

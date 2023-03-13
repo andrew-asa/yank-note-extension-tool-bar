@@ -17,6 +17,7 @@
 </template>
 <script lang="ts">
 import { compile } from '@/utils/template'
+import { getCurrentTimestamp } from '@/utils/ghost_base_date'
 
 
 export default {
@@ -42,6 +43,7 @@ export default {
   },
   methods: {
     saveTemplate(t) {
+      this.activeCard.updateTime = getCurrentTimestamp()
       this.$emit('save', this.activeCard)
     },
     applyTemplate(t) {
